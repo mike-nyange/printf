@@ -1,3 +1,5 @@
+#include "main.h"
+
 /**
  * print_x - takes an unsigned int and prints it in lowercase hex notation
  * @x: unsigned int to print
@@ -19,7 +21,6 @@ int print_X(va_list X)
 {
 	return (print_hex(va_arg(X, unsigned int), 1));
 }
-#include "holberton.h"
 
 /**
  * print_u - prints an unsigned in in decimal notation
