@@ -13,6 +13,7 @@ static int (*check_specifiers(const char *format))(va_list)
 	print_t p[] = {
 		{"c", print_c},
 		{"s", print_s},
+/*
 		{"i", print_i},
 		{"d", print_d},
 		{"u", print_u},
@@ -25,6 +26,7 @@ static int (*check_specifiers(const char *format))(va_list)
 		{"r", print_r},
 		{"R", print_R},
 		{NULL, NULL}
+*/
 	};
 
 	for (i = 0; p[i].t != NULL; i++)
