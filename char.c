@@ -35,46 +35,47 @@ int print_s(va_list s)
 	return (count);
 }
 /**
-  *print_Str - prints the string.
-  *@args: list of arguments.
-  *@len: number of chars.
+  *print_S - prints the string.
+  *@list: list of arguments.
   *
   *Return: length of characters printed.
   */
-int print_S(va_list args, int len)
+int print_S(va_list list)
 {
-	int i;
+	char *hex;
+	char *s = va_arg(list, char *);
+	unsigned int i = 0, j;
+	int c = 0, len;
 
-	char *str = va_arg(args, char *);
-
-	if (str == NULL)
-		str = "(null)";
-	i = 0;
-	while (str[i] != '\0')
+	if (s == NULL)
+		s = "(null)";
+	for (i = 0; s[i]; i++)
 	{
-
-		if ((str[i] > 0 && str[i] < 32) || str[i] >= 127)
+		if ((s[i] > 0 && s[i] < 32) || s[i] >= 127)
 		{
-			if (str[i] < 15)
+			_putchar('\\');
+			_putchar('x');
+			len = base_len(s[i], 16);
+			if (len != 2)
 			{
-				len += _printf("\\x0");
-				len += _printf("%X", str[i]);
-				i++;
+				_putchar('0');
+				c++;
 			}
-			else
+			c += 2;
+			hex = hex_conv(s[i]);
+			for (j = 0; hex[j]; j++)
 			{
-				len += _printf("\\x");
-				len += _printf("%X", str[i]);
-				i++;
+				_putchar(hex[j]);
+				c++;
 			}
 		}
 		else
 		{
-			len += _putchar(str[i]);
-			i++;
+			_putchar(s[i]);
+			c++;
 		}
 	}
-	return (len);
+	return (c);
 }
 
 /**
