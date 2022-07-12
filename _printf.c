@@ -24,7 +24,7 @@ int (*get_specifiers(char ch))(va_list, int)
 		{'S', print_S},
 		{'p', print_p},
 		{'r', print_r},
-		{'R', print_rot13},
+		{'R', print_R},
 		{'\0', NULL}
 	};
 	for (i = 0; p[i].op; i++)
