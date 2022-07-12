@@ -8,7 +8,7 @@
  *Return:pointer to function that corresponds with specified format or NULL
  *
  */
-int (*get_specifiers(char ch))(va_list, int)
+int (*get_specifiers(char ch))(va_list)
 {
 	int i;
 	print_formats p[] = {
@@ -45,7 +45,7 @@ int _printf(const char *format, ...)
 {
 	int i, count;
 
-	int (*f)(va_list, int);
+	int (*f)(va_list);
 
 	va_list args;
 
