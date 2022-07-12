@@ -1,4 +1,4 @@
-#include "main.h"
+B#include "main.h"
 #include <stdlib.h>
 /**
  * print_b - takes an unsigned int and prints it in binary notation
@@ -31,9 +31,9 @@ int print_b(va_list list)
 	{
 	free(str);
 	return (len); }
-	
-	/**
- *print_p - prints an address 
+
+/**
+ *print_p - prints an address
  *@list: list to increment
  *Return: count of characters
  */
@@ -54,7 +54,7 @@ int print_p(va_list list)
 	_putchar('x');
 	c = 2, i = 0;
 	len = base_len(add, 16);
-	hex = malloc((sizeof(char) *len) + 1);
+	hex = malloc((sizeof(char) * len) + 1);
 	if (!hex)
 	{
 		for (i = 0; s[i]; i++)
