@@ -1,81 +1,80 @@
 #include "main.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 /**
- * check_specifiers - checks for valid specifiers.
- * @format: format specifiers.
+ *get_specifiers - returns pointer to format specifier functions.
+ *@ch:character to be used to find pointer function.
+ *Return:pointer to function that corresponds with specified format or NULL
  *
- * Return: pointer to valid function or NULL
  */
-static int (*check_specifiers(const char *format))(va_list)
+int (*get_specifiers(char ch))(va_list, int)
 {
-	unsigned int i;
-	print_t p[] = {
-		{"c", print_c},
-		{"s", print_s},
-		{"i", print_i},
-		{"d", print_d},
-		{"u", print_u},
-		{"b", print_b},
-		{"o", print_o},
-		{"x", print_x},
-		{"X", print_X},
-		{"p", print_p},
-		{"S", print_S},
-		/*{"r", print_r},*/
-		/*{"R", print_R},*/
-		{NULL, NULL}
+	int i;
+	print_formats p[] = {
+		{'c', print_c},
+		{'s', print_s},
+		{'d', print_d},
+		{'i', print_i},
+		{'b', print_b},
+		{'u', print_u},
+		{'o', print_o},
+		{'X', print_x},
+		{'x', print_x},
+		{'S', print_S},
+		{'p', print_p},
+		{'r', print_r},
+		{'R', print_rot13},
+		{'\0', NULL}
 	};
-
-	for (i = 0; p[i].t != NULL; i++)
+	for (i = 0; p[i].op; i++)
 	{
-		if (*(p[i].t) == *format)
+		if (ch == p[i].op)
 		{
-			break;
+			return (p[i].func);
 		}
 	}
-	return (p[i].f);
+	return (NULL);
 }
 /**
- * _printf - prints anything
- * @format: list of argument types passed to the function
- *
- * Return: number of characters printed
+ *_printf - prints formatted output.
+ * @format: the initial string that tell us what is going to be printed
+ * Return: the amount of times we write to stdout or -1
  */
 int _printf(const char *format, ...)
 {
-	unsigned int i = 0, count = 0;
-	va_list valist;
-	int (*f)(va_list);
+	int i, count;
+
+	int (*f)(va_list, int);
+
+	va_list args;
 
 	if (format == NULL)
 		return (-1);
-	va_start(valist, format);
-	while (format[i])
+
+	va_start(args, format);
+	i = count = 0;
+
+	while (format[i] != '\0')
 	{
-		for (; format[i] != '%' && format[i]; i++)
+		if (format[i] == '%')
+		{
+			if (format[i + 1] == '\0')
+				return (-1);
+			f = get_specifiers(format[i + 1]);
+			if (f == NULL)
+				count += handle_percent(format[i], format[i + 1]);
+			else
+				count += f(args);
+			i++;
+		}
+		else
 		{
 			_putchar(format[i]);
 			count++;
 		}
-		if (!format[i])
-			return (count);
-		f = check_specifiers(&format[i + 1]);
-		if (f != NULL)
-		{
-			count += f(valist);
-			i += 2;
-			continue;
-		}
-		if (!format[i + 1])
-			return (-1);
-		_putchar(format[i]);
-		count++;
-		if (format[i + 1] == '%')
-			i += 2;
-		else
-			i++;
+		i++;
 	}
-	va_end(valist);
+	va_end(args);
 	return (count);
 }
