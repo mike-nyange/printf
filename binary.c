@@ -16,7 +16,7 @@ int print_b(va_list list)
 	if (num == 0)
 	{
 		_putchar('0');
-		return (1); 
+		return (1);
 	}
 	len = base_len(num, 2);
 	str = malloc((sizeof(char) * len) + 1);
@@ -27,7 +27,7 @@ int print_b(va_list list)
 	{
 		str[i] = num % 2;
 		num = num / 2;
-		i++; 
+		i++;
 	}
 	for (j = (i - 1); j >= 0; j--)
 	{
