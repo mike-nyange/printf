@@ -53,4 +53,8 @@ int print_S(va_list S);
 int print_r(va_list r);
 int print_R(va_list R);
 int handle_percent(char ch1, char ch2);
+void _write(buffer *b_r, char c);
+void _write_str(buffer *b_r, char *s);
+void _write_tmpbuf(buffer *b_r);
+int *rev_string(char *s);
 #endif
