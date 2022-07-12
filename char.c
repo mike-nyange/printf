@@ -35,35 +35,46 @@ int print_s(va_list s)
 	return (count);
 }
 /**
- * print_S - prints a string and nonprintable character ascii values
- * @S: string to print
- *
- * Return: number of chars printed
- */
-int print_S(va_list S)
+  *print_Str - prints the string.
+  *@args: list of arguments.
+  *@len: number of chars.
+  *
+  *Return: length of characters printed.
+  */
+int print_Str(va_list args, int len)
 {
-	unsigned int i;
-	int count = 0;
-	char *str = va_arg(S, char *);
+	int i;
+
+	char *str = va_arg(args, char *);
 
 	if (str == NULL)
 		str = "(null)";
-	for (i = 0; str[i]; i++)
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (str[i] < 32 || str[i] >= 127)
+
+		if ((str[i] > 0 && str[i] < 32) || str[i] >= 127)
 		{
-			_putchar('\\');
-			_putchar('x');
-			count += 2;
-			count += hex_print(str[i]);
+			if (str[i] < 15)
+			{
+				len += _printf("\\x0");
+				len += _printf("%X", str[i]);
+				i++;
+			}
+			else
+			{
+				len += _printf("\\x");
+				len += _printf("%X", str[i]);
+				i++;
+			}
 		}
 		else
 		{
-			_putchar(str[i]);
-			count++;
+			len += _putchar(str[i]);
+			i++;
 		}
 	}
-	return (count);
+	return (len);
 }
 
 /**
