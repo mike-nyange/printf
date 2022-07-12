@@ -1,4 +1,4 @@
-B#include "main.h"
+#include "main.h"
 #include <stdlib.h>
 /**
  * print_b - takes an unsigned int and prints it in binary notation
@@ -22,6 +22,7 @@ int print_b(va_list list)
 	str = malloc((sizeof(char) * len) + 1);
 	if (str == NULL)
 		return (-1);
+
 	i = 0;
 	while (num > 0)
 	{

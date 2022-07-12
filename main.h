@@ -5,6 +5,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <stddef.h>
 /**
  * struct operation - a structure containing a char to compare with format specifiers.
  * and then choose the right function when it matches
