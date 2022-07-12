@@ -19,7 +19,7 @@ int (*get_specifiers(char ch))(va_list, int)
 		{'b', print_b},
 		{'u', print_u},
 		{'o', print_o},
-		{'X', print_x},
+		{'X', print_X},
 		{'x', print_x},
 		{'S', print_S},
 		{'p', print_p},
