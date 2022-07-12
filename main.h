@@ -2,6 +2,8 @@
 #define MAIN_H
 
 #include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
 /**
  * struct operation - a structure containing a char to compare with format specifiers.
  * and then choose the right function when it matches
