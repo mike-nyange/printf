@@ -61,10 +61,10 @@ int print_p(va_list list)
 	len = base_len(add, 16);
 	hex = malloc((sizeof(char) * len) + 1);
 	if (!hex)
-	{
-		for (i = 0; s[i]; i++){
+		for (i = 0; s[i]; i++)
+		{
 			_putchar(s[i]); }
-		return (5); }
+		return (5);
 	while (add > 0)
 	{
 		temp = add % 16;
