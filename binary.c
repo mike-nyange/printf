@@ -2,32 +2,37 @@
 #include <stdlib.h>
 /**
  * print_b - takes an unsigned int and prints it in binary notation
- * @b: unsigned in to print
+ * @list: unsigned in to print
  *
  * Return: number of digits printed
  */
-int print_b(va_list b)
+int print_b(va_list list)
 {
-	unsigned int n, m, i, sum;
-	unsigned int a[32];
-	int count;
+	unsigned int num;
+	int i, j, len;
+	char *str;
 
-	n = va_arg(b, unsigned int);
-	m = 2147483648; /* (2 ^ 31) */
-	a[0] = n / m;
-	for (i = 1; i < 32; i++)
+	num = va_arg(list, unsigned int);
+	if (num == 0)
 	{
-		m /= 2;
-		a[i] = (n / m) % 2;
+		_putchar('0');
+		return (1);
 	}
-	for (i = 0, sum = 0, count = 0; i < 32; i++)
+	len = base_len(num, 2);
+	str = malloc((sizeof(char) * len) + 1);
+	if (str == NULL)
+		return (-1);
+	i = 0;
+	while (num > 0)
 	{
-		sum += a[i];
-		if (sum || i == 31)
-		{
-			_putchar('0' + a[i]);
-			count++;
-		}
+		str[i] = num % 2;
+		num = num / 2;
+		i++;
 	}
-	return (count);
+	for (j = (i - 1); j >= 0; j--)
+	{
+		_putchar(str[j] + '0');
+	}
+	free(str);
+	return (len);
 }
