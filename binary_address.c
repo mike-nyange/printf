@@ -70,13 +70,11 @@ int print_p(va_list list)
 		if (temp > 9)
 		{
 			hex[i] = temp + 87;
-			i++;
-		}
+			i++; }
 		else
 		{
 			hex[i] = temp + 48;
-			i++;
-		}
+			i++; }
 		add /= 16;
 	}
 	rev_string(hex);
