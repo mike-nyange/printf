@@ -3,15 +3,16 @@
 
 #include <stdarg.h>
 /**
- * struct print - struct for printing various types
- * @t: type to print
- * @f: function to print
+ * struct operation - a structure containing a char to compare with format specifiers.
+ * and then choose the right function when it matches
+ * @op: the char we want to compare to
+ * @func: the address of the function we want to return if a char matches
  */
-typedef struct print
+typedef struct operation
 {
-	char *t;
-	int (*f)(va_list);
-} print_t;
+	char op;
+	int (*func)(va_list);
+} print_formats;
 
 int _putchar(char c);
 int _printf(const char *format, ...);
@@ -28,4 +29,5 @@ int print_p(va_list p);
 int print_S(va_list S);
 int print_r(va_list r);
 int print_R(va_list R);
+int handle_percent(char ch1, char ch2);
 #endif
