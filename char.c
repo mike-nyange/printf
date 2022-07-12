@@ -41,7 +41,7 @@ int print_s(va_list s)
   *
   *Return: length of characters printed.
   */
-int print_Str(va_list args, int len)
+int print_S(va_list args, int len)
 {
 	int i;
 
