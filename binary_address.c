@@ -34,8 +34,7 @@ int print_b(va_list list)
 		_putchar(str[j] + '0');
 	}
 	free(str);
-	return (len);
-}
+	return (len); }
 
 /**
  *print_p - prints an address
@@ -44,7 +43,8 @@ int print_b(va_list list)
  */
 int print_p(va_list list)
 {
-	char *hex, char *s = "(nil)";
+	char *hex;
+	char *s = "(nil)";
 	unsigned long int add = (unsigned long int)va_arg(list, void *);
 	int c = 0, i, temp, len;
 
@@ -61,9 +61,10 @@ int print_p(va_list list)
 	len = base_len(add, 16);
 	hex = malloc((sizeof(char) * len) + 1);
 	if (!hex)
-		for (i = 0; s[i]; i++)
-			_putchar(s[i]);
-		return (5);
+	{
+		for (i = 0; s[i]; i++){
+			_putchar(s[i]); }
+		return (5); }
 	while (add > 0)
 	{
 		temp = add % 16;
@@ -81,7 +82,5 @@ int print_p(va_list list)
 	for (i = 0; hex[i]; i++)
 	{
 		_putchar(hex[i]);
-		c++;
-	}
-	return (c);
-}
+		c++; }
+	return (c); }
