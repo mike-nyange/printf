@@ -32,7 +32,8 @@ int print_b(va_list list)
 	}
 	for (j = (i - 1); j >= 0; j--)
 	{
-		free(str);
-		return (len);
+		_putchar(str[j] + '0');
 	}
+	free(str);
+	return (len);
 }
