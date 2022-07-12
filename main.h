@@ -56,6 +56,7 @@ int print_p(va_list list);
 int print_S(va_list list);
 int print_r(va_list r);
 int print_R(va_list R);
+char *convert_to(char representation[], unsigned int num, int base);
 int handle_percent(char ch1, char ch2);
 unsigned int base_len(unsigned int num, int base);
 char *hex_conv(int num);
