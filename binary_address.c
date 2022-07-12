@@ -16,8 +16,7 @@ int print_b(va_list list)
 	if (num == 0)
 	{
 		_putchar('0');
-		return (1);
-	}
+		return (1); }
 	len = base_len(num, 2);
 	str = malloc((sizeof(char) * len) + 1);
 	if (str == NULL)
@@ -27,12 +26,9 @@ int print_b(va_list list)
 	{
 		str[i] = num % 2;
 		num = num / 2;
-		i++;
-	}
+		i++; }
 	for (j = (i - 1); j >= 0; j--)
 	{
-		_putchar(str[j] + '0');
-	}
 	free(str);
 	return (len); }
 
@@ -61,10 +57,10 @@ int print_p(va_list list)
 	len = base_len(add, 16);
 	hex = malloc((sizeof(char) * len) + 1);
 	if (!hex)
+	{
 		for (i = 0; s[i]; i++)
-		{
-			_putchar(s[i]); }
-		return (5);
+			_putchar(s[i]);
+		return (5); }
 	while (add > 0)
 	{
 		temp = add % 16;
