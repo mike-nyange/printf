@@ -2,24 +2,99 @@
 
 /**
  * print_x - takes an unsigned int and prints it in lowercase hex notation
- * @x: unsigned int to print
+ * @list: unsigned int to print
  *
  * Return: number of digits printed
  */
-int print_x(va_list x)
+int print_x(va_list list)
 {
-	return (print_x(va_arg(x, unsigned int), 0));
+	unsigned int num;
+	int i, j, temp, len;
+	char *str;
+
+	num = va_arg(list, unsigned int);
+	if (num == 0)
+	{
+		_putchar('0');
+		return (1);
+	}
+	len = base_len(num, 16);
+	str = malloc((sizeof(char) * len) + 1);
+	if (str == NULL)
+	{
+		return (-1);
+	}
+	i = 0;
+	while (num > 0)
+	{
+		temp = num % 16;
+		if (temp < 10)
+		{
+			str[i] = temp + 48;
+			i++;
+		}
+		else
+		{
+			str[i] = temp + 87;
+			i++;
+		}
+		num = num / 16;
+	}
+	for (j = (i - 1); j >= 0; j--)
+	{
+		_putchar(str[j]);
+	}
+	free(str);
+	return (len);
+
 }
 
 /**
- * print_X - takes am unsigned int and prints it in uppercase hex notation
- * @X: unsigned int to print
+ * print_X - takes an unsigned int and prints it in uppercase hex notation
+ * @list: unsigned int to print
  *
  * Return: number of digits printed
  */
-int print_X(va_list X)
+int print_X(va_list list)
 {
-	return (print_X(va_arg(X, unsigned int), 1));
+	unsigned int num;
+	int i, j, temp, len;
+	char *str;
+
+	num = va_arg(list, unsigned int);
+	if (num == 0)
+	{
+		_putchar('0');
+		return (1);
+	}
+	len = base_len(num, 16);
+	str = malloc((sizeof(char) * len) + 1);
+	if (str == NULL)
+	{
+		return (-1);
+	}
+	i = 0;
+	while (num > 0)
+	{
+		temp = num % 16;
+		if (temp < 10)
+		{
+			str[i] = temp + 48;
+			i++;
+		}
+		else
+		{
+			str[i] = temp + 55;
+			i++;
+		}
+		num = num / 16;
+	}
+	for (j = (i - 1); j >= 0; j--)
+	{
+		_putchar(str[j]);
+	}
+	free(str);
+	return (len);
 }
 
 /**
@@ -56,32 +131,40 @@ int print_u(va_list u)
 
 /**
  * print_o - takes an unsigned int and prints it in octal notation
- * @o: unsigned int to print
+ * @list: unsigned int to print
  *
  * Return: number of digits printed
  */
-int print_o(va_list o)
+int print_o(va_list list)
 {
-	unsigned int a[11];
-	unsigned int i, m, n, sum;
-	int count;
+	unsigned int num;
+	int i, j, len;
+	char *str;
 
-	n = va_arg(o, unsigned int);
-	m = 1073741824; /* (8 ^ 10) */
-	a[0] = n / m;
-	for (i = 1; i < 11; i++)
+	num = va_arg(list, unsigned int);
+
+	if (num == 0)
 	{
-		m /= 8;
-		a[i] = (n / m) % 8;
+		_putchar('0');
+		return (1);
 	}
-	for (i = 0, sum = 0, count = 0; i < 11; i++)
+	len = base_len(num, 8);
+	str = malloc((sizeof(char) * len) + 1);
+	if (str == NULL)
 	{
-		sum += a[i];
-		if (sum || i == 10)
-		{
-			_putchar('0' + a[i]);
-			count++;
-		}
+		return (-1);
 	}
-	return (count);
+	i = 0;
+	while (num > 0)
+	{
+		str[i] = num % 8;
+		num = num / 8;
+		i++;
+	}
+	for (j = (i - 1); j >= 0; j--)
+	{
+		_putchar(str[j] + '0');
+	}
+	free(str);
+	return (len);
 }
