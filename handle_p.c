@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdlib.h>
+
 /**
  *print_p - prints an address
  *@list:list to increment
