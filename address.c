@@ -14,8 +14,9 @@ int print_p(va_list list)
 	if (add == 0)
 	{
 		for (i = 0; s[i]; i++)
+		{
 			_putchar(s[i]);
-			c++;
+			c++; }
 		return (c); }
 	_putchar('0');
 	_putchar('x');
